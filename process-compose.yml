@@ -1,0 +1,17 @@
+version: "0.5"
+
+processes:
+
+  0-postgresql:
+    command: postgres -D /workspaces/Silos/.devbox/postgresql/data -k /tmp
+    environment:
+      - PGDATA=/workspaces/Silos/.devbox/postgresql/data
+      - PGHOST=/tmp
+    is_daemon: true
+    readiness_probe:
+      exec:
+        command: pg_isready -h /tmp
+      initial_delay_seconds: 2
+      period_seconds: 2
+      timeout_seconds: 5
+
