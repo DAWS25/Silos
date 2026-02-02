@@ -1,10 +1,17 @@
 {
-  "$schema":  "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
-  "packages": ["postgresql@latest"],
-  "env": {
-    "PGDATA": "/workspaces/Silos/.devbox/postgresql/data",
-    "PGHOST": "/tmp"
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.16.0/.schema/devbox.schema.json",
+  "packages": {
+    "postgresql_18@latest": {
+      "disable_plugin": true
+    },
+    "process-compose@latest": {},
+    "direnv":                 "latest",
+    "flyway":                 "latest"
   },
+  "env": {
+    "POSTGRES_PASSWORD": "Masterkeu123"
+  },
+
   "shell": {
     "init_hook": [
       "echo 'Welcome to devbox!' > /dev/null"

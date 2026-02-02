@@ -1,3 +1,5 @@
+.envrc
+
 # PostgreSQL data directory
 .devbox/postgresql/
 
