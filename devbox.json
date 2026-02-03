@@ -8,8 +8,9 @@
     "direnv":                 "latest",
     "flyway":                 "latest"
   },
+  
   "env": {
-    "POSTGRES_PASSWORD": "Masterkeu123"
+    "POSTGRES_PASSWORD": "Masterkey123"
   },
 
   "shell": {

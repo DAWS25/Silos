@@ -2,23 +2,19 @@ version: "0.5"
 
 processes:
   0-postgresql:
-    command: bash -c "docker rm -f agroboto-postgres 2>/dev/null || true; docker run --rm --name agroboto-postgres -e POSTGRES_PASSWORD=${POSTGRES_PASSWORD} -p 5432:5432 postgres"
+    command: ./scripts/pgsql-start.sh
     readiness_probe:
       exec:
-        command: docker exec agroboto-postgres pg_isready -U postgres
+        command: docker exec silos-postgres pg_isready -U postgres
       initial_delay_seconds: 3
       period_seconds: 2
       timeout_seconds: 5
 
   1-check-connection:
-    command: psql -h localhost -U postgres -c "SELECT 1"
-    environment:
-      - PGPASSWORD=${POSTGRES_PASSWORD}
+    command: ./scripts/pgsql-check.sh
     depends_on:
       0-postgresql:
         condition: process_healthy
     availability:
       restart: "no"
 
-  2-sleep:
-    command: 'while true; do sleep 3600; done' 
